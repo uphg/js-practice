@@ -7,26 +7,24 @@ const emitter = new Emitter()
 const emitter2 = useEmitter()
 
 // class Emitter
-console.log('# class Emitter')
-emitter.emit('update-value', 'hi')
-emitter.emit('update-value', 'hello')
 emitter.on('update-value', (value) => {
   console.log(value)
 })
+console.log('# class Emitter')
+emitter.emit('update-value', 'hi')
+emitter.emit('update-value', 'hello')
+
 
 // useEmitter
-console.log('# useEmitter')
-emitter2.emit('update-value', 'hi')
-emitter2.emit('update-value', 'hello')
 emitter2.on('update-value', (value) => {
   console.log(value)
 })
+console.log('# useEmitter')
+emitter2.emit('update-value', 'hi')
+emitter2.emit('update-value', 'hello')
+
 
 // useEmitter clear
-emitter2.emit('run', 1)
-emitter2.emit('run', 2)
-emitter2.emit('play', 233)
-emitter2.clear('run')
 emitter2.on('run', (params) => {
   console.log('run - params')
   console.log(params)
@@ -35,6 +33,12 @@ emitter2.on('play', (params) => {
   console.log('play - params')
   console.log(params)
 })
+emitter2.emit('run', 1)
+emitter2.emit('run', 2)
+emitter2.emit('play', 233)
+emitter2.clear('run')
+emitter2.emit('run', 500)
+
 
 // bind2
 console.log('# bind2')

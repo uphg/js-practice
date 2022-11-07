@@ -1,12 +1,12 @@
 export class Emitter {
   #events = {}
   on(eventName, callback) {
-    const current = this.#events[eventName]
-    current && current.forEach(args => callback(...args))
+    const e = this.#events
+    e[eventName] ? e[eventName].push(callback) : e[eventName] = [callback]
   }
   emit(eventName, ...args) {
-    const events = this.#events
-    events[eventName]?.length ? events[eventName].push(args) : (events[eventName] = [args])
+    const current = this.#events[eventName]
+    current && current.forEach((fn) => fn(...args))
   }
   clear(eventName) {
     eventName ? this.#events[eventName] = [] : this.events = {}
