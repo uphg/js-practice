@@ -2,40 +2,40 @@ import './style.css'
 import javascriptLogo from './javascript.svg'
 import { Emitter, useEmitter } from './src/emitter'
 import './src/bind'
-import { getTreeLevels } from './src/getTreeLevels'
+import { getSelectedTree } from './src/getSelectedTree'
 
 const a =  [{
-  label: '一级 1',
+  label: '1',
   children: [{
-    label: '二级 1-1',
+    label: '1-1',
     children: [{
-      label: '三级 1-1-1'
+      label: '1-1-1'
     }]
   }]
 }, {
-  label: '一级 2',
+  label: '2',
   children: [{
-    label: '二级 2-1',
+    label: '2-1',
     children: [{
-      label: '三级 2-1-1'
+      label: '2-1-1'
     }]
   }, {
-    label: '二级 2-2',
+    label: '2-2',
     children: [{
-      label: '三级 2-2-1'
+      label: '2-2-1'
     }]
   }]
 }, {
-  label: '一级 3',
+  label: '3',
   children: [{
-    label: '二级 3-1',
+    label: '3-1',
     children: [{
-      label: '三级 3-1-1'
+      label: '3-1-1'
     }]
   }, {
-    label: '二级 3-2',
+    label: '3-2',
     children: [{
-      label: '三级 3-2-1'
+      label: '3-2-1'
     }]
   }]
 }]
@@ -96,7 +96,29 @@ const a =  [{
 // // expected output: 42
 
 
-const p1 = getTreeLevels(a, (item) => item.label === '三级 2-1-1')
+const p1 = getSelectedTree(a, (item) => item.label === '2-2-1')
 
 console.log('p1')
 console.log(p1)
+
+const a2 = [1, 2, 3, 4, 5]
+
+console.log('\n# break')
+
+for (const item of a2) {
+  if (item === 3) {
+    break
+  }
+  console.log('item')
+  console.log(item)
+}
+
+console.log('\n# continue')
+
+for (const item of a2) {
+  if (item === 3) {
+    continue
+  }
+  console.log('item')
+  console.log(item)
+}
