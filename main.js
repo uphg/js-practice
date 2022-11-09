@@ -2,58 +2,101 @@ import './style.css'
 import javascriptLogo from './javascript.svg'
 import { Emitter, useEmitter } from './src/emitter'
 import './src/bind'
+import { getTreeLevels } from './src/getTreeLevels'
 
-const emitter = new Emitter()
-const emitter2 = useEmitter()
+const a =  [{
+  label: '一级 1',
+  children: [{
+    label: '二级 1-1',
+    children: [{
+      label: '三级 1-1-1'
+    }]
+  }]
+}, {
+  label: '一级 2',
+  children: [{
+    label: '二级 2-1',
+    children: [{
+      label: '三级 2-1-1'
+    }]
+  }, {
+    label: '二级 2-2',
+    children: [{
+      label: '三级 2-2-1'
+    }]
+  }]
+}, {
+  label: '一级 3',
+  children: [{
+    label: '二级 3-1',
+    children: [{
+      label: '三级 3-1-1'
+    }]
+  }, {
+    label: '二级 3-2',
+    children: [{
+      label: '三级 3-2-1'
+    }]
+  }]
+}]
 
-// class Emitter
-emitter.on('update-value', (value) => {
-  console.log(value)
-})
-console.log('# class Emitter')
-emitter.emit('update-value', 'hi')
-emitter.emit('update-value', 'hello')
+// const emitter = new Emitter()
+// const emitter2 = useEmitter()
+
+// // class Emitter
+// emitter.on('update-value', (value) => {
+//   console.log(value)
+// })
+// console.log('# class Emitter')
+// emitter.emit('update-value', 'hi')
+// emitter.emit('update-value', 'hello')
 
 
-// useEmitter
-emitter2.on('update-value', (value) => {
-  console.log(value)
-})
-console.log('# useEmitter')
-emitter2.emit('update-value', 'hi')
-emitter2.emit('update-value', 'hello')
+// // useEmitter
+// emitter2.on('update-value', (value) => {
+//   console.log(value)
+// })
+// console.log('# useEmitter')
+// emitter2.emit('update-value', 'hi')
+// emitter2.emit('update-value', 'hello')
 
 
-// useEmitter clear
-emitter2.on('run', (params) => {
-  console.log('run - params')
-  console.log(params)
-})
-emitter2.on('play', (params) => {
-  console.log('play - params')
-  console.log(params)
-})
-emitter2.emit('run', 1)
-emitter2.emit('run', 2)
-emitter2.emit('play', 233)
-emitter2.clear('run')
-emitter2.emit('run', 500)
+// // useEmitter clear
+// emitter2.on('run', (params) => {
+//   console.log('run - params')
+//   console.log(params)
+// })
+// emitter2.on('play', (params) => {
+//   console.log('play - params')
+//   console.log(params)
+// })
+// emitter2.emit('run', 1)
+// emitter2.emit('run', 2)
+// emitter2.emit('play', 233)
+// emitter2.clear('run')
+// emitter2.emit('run', 500)
 
 
-// bind2
-console.log('# bind2')
-const obj1 = {
-  x: 42,
-  getX() {
-    return this?.x;
-  }
-};
+// // bind2
+// console.log('# bind2')
+// const obj1 = {
+//   x: 42,
+//   getX() {
+//     return this?.x;
+//   }
+// };
 
-const unboundGetX = obj1.getX;
-console.log(unboundGetX()); // The function gets invoked at the global scope
-// expected output: undefined
+// const unboundGetX = obj1.getX;
+// console.log(unboundGetX()); // The function gets invoked at the global scope
+// // expected output: undefined
 
-const boundGetX = unboundGetX.bind2(obj1);
-console.log('boundGetX')
-console.log(boundGetX());
-// expected output: 42
+// const boundGetX = unboundGetX.bind2(obj1);
+// console.log('boundGetX')
+// console.log(boundGetX());
+// // expected output: 42
+
+
+const p1 = getTreeLevels(a, (item) => item.label === '三级 2-1-1')
+
+console.log('p1')
+console.log(p1)
