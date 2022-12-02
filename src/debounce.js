@@ -1,13 +1,12 @@
 function debounce(fn, wait, immediate = false) {
   let timerId, result
 
-  return function() {
-    const args = arguments
+  return function(...args) {
     const context = this
     if (timerId) {
       window.clearTimeout(timerId)
     } else if (immediate) {
-      result = fn.apply(context.args)
+      result = fn.apply(context, args)
     }
     timerId = setTimeout(() => {
       if (!immediate) result = fn.apply(context, args)
